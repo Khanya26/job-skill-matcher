@@ -9,21 +9,20 @@ from matcher import (
 )
 
 
-# ---------------------------------------------------------
+
 # PAGE CONFIG
-# ---------------------------------------------------------
+
 
 st.set_page_config(
     page_title="SkillMatch AI",
-    page_icon="🎯",
     layout="wide",
     initial_sidebar_state="expanded",
 )
 
 
-# ---------------------------------------------------------
+
 # CUSTOM CSS
-# ---------------------------------------------------------
+
 
 st.markdown(
     """
@@ -157,13 +156,12 @@ st.markdown(
 )
 
 
-# ---------------------------------------------------------
 # SIDEBAR
-# ---------------------------------------------------------
+
 
 with st.sidebar:
 
-    st.title("🎯 SkillMatch AI")
+    st.title(" SkillMatch AI")
 
     st.caption(
         "Explainable resume-to-job matching"
@@ -183,10 +181,10 @@ with st.sidebar:
 
     st.subheader("Technology")
 
-    st.write("🐍 Python")
-    st.write("🎈 Streamlit")
-    st.write("📊 TF-IDF / scikit-learn")
-    st.write("🤖 OpenRouter AI")
+    st.write(" Python")
+    st.write(" Streamlit")
+    st.write(" TF-IDF / scikit-learn")
+    st.write(" OpenRouter AI")
 
     st.divider()
 
@@ -197,9 +195,9 @@ with st.sidebar:
     )
 
 
-# ---------------------------------------------------------
+
 # HERO
-# ---------------------------------------------------------
+
 
 st.markdown(
     """
@@ -225,9 +223,9 @@ AI-powered improvement suggestions.
 )
 
 
-# ---------------------------------------------------------
+
 # SAMPLE DATA
-# ---------------------------------------------------------
+
 
 SAMPLE_RESUME = """Data Analyst
 
@@ -248,9 +246,9 @@ repeatable data workflows.
 """
 
 
-# ---------------------------------------------------------
+
 # INPUT SECTION
-# ---------------------------------------------------------
+
 
 st.markdown(
     '<div class="section-title">Analyze your application</div>',
@@ -271,13 +269,13 @@ resume_col, job_col = st.columns(
 )
 
 
-# ---------------------------------------------------------
+
 # RESUME
-# ---------------------------------------------------------
+
 
 with resume_col:
 
-    st.subheader("📄 Resume")
+    st.subheader(" Resume")
 
     st.caption(
         "Upload a text-based PDF or use the sample resume."
@@ -317,13 +315,13 @@ with resume_col:
             )
 
 
-# ---------------------------------------------------------
+
 # JOB DESCRIPTION
-# ---------------------------------------------------------
+
 
 with job_col:
 
-    st.subheader("💼 Job description")
+    st.subheader(" Job description")
 
     st.caption(
         "Paste the requirements for the role you are targeting."
@@ -336,14 +334,14 @@ with job_col:
     )
 
 
-# ---------------------------------------------------------
+
 # ANALYZE BUTTON
-# ---------------------------------------------------------
+
 
 st.write("")
 
 analyze_clicked = st.button(
-    "🔍 Analyze Match",
+    " Analyze Match",
     type="primary",
     width="stretch",
 )
@@ -355,9 +353,9 @@ st.caption(
 )
 
 
-# ---------------------------------------------------------
+
 # ANALYSIS
-# ---------------------------------------------------------
+
 
 if analyze_clicked:
 
@@ -390,9 +388,9 @@ if analyze_clicked:
                 job_description,
             )
 
-        # -------------------------------------------------
+        
         # SCORE SECTION
-        # -------------------------------------------------
+        
 
         st.markdown(
             '<div class="section-title">Match analysis</div>',
@@ -442,9 +440,8 @@ if analyze_clicked:
             "It is not a standardized hiring score."
         )
 
-        # -------------------------------------------------
         # SKILLS BREAKDOWN
-        # -------------------------------------------------
+       
 
         st.markdown(
             '<div class="section-title">Skills breakdown</div>',
@@ -474,10 +471,9 @@ if analyze_clicked:
                 "No skills from the current skill taxonomy "
                 "were found in the job description."
             )
-
-        # -------------------------------------------------
+       
         # MATCHED / MISSING
-        # -------------------------------------------------
+        
 
         matched_col, missing_col = st.columns(
             2,
@@ -486,43 +482,71 @@ if analyze_clicked:
 
         with matched_col:
 
-            st.subheader("✅ Matched skills")
+            st.subheader(" Matched skills")
 
             if result["matched_skills"]:
 
                 for skill in result["matched_skills"]:
 
-                    st.success(
-                        f"✓ {skill}"
+                    st.markdown(
+                        f"""
+                        <div style="
+                            padding: 0.65rem 0;
+                            font-size: 1rem;
+                            color: #111827;
+                        ">
+                            <span style="
+                                color: #16a34a;
+                                font-weight: 700;
+                                margin-right: 0.5rem;
+                            ">✓</span>
+                            {skill}
+                        </div>
+                        """,
+                        unsafe_allow_html=True,
                     )
 
             else:
 
-                st.info(
+                st.caption(
                     "No matched skills identified."
                 )
 
+
         with missing_col:
 
-            st.subheader("📌 Skills to strengthen")
+            st.subheader(" Skills to strengthen")
 
             if result["missing_skills"]:
 
                 for skill in result["missing_skills"]:
 
-                    st.warning(
-                        f"+ {skill}"
+                    st.markdown(
+                        f"""
+                        <div style="
+                            padding: 0.65rem 0;
+                            font-size: 1rem;
+                            color: #111827;
+                        ">
+                            <span style="
+                                color: #374151;
+                                font-weight: 700;
+                                margin-right: 0.8rem;
+                            ">•</span>
+                            {skill}
+                        </div>
+                        """,
+                        unsafe_allow_html=True,
                     )
 
             else:
 
-                st.success(
-                    "✓ No missing skills identified."
+                st.caption(
+                    "No missing skills identified."
                 )
-
-        # -------------------------------------------------
+      
         # EVIDENCE
-        # -------------------------------------------------
+        
 
         st.markdown(
             '<div class="section-title">Supporting evidence</div>',
@@ -561,12 +585,12 @@ if analyze_clicked:
                     "the current skill taxonomy."
                 )
 
-        # -------------------------------------------------
+        
         # AI COACH
-        # -------------------------------------------------
+        
 
         st.markdown(
-            '<div class="section-title">🤖 AI career coach</div>',
+            '<div class="section-title"> AI career coach</div>',
             unsafe_allow_html=True,
         )
 
@@ -646,15 +670,14 @@ if analyze_clicked:
                 )
 
 
-# ---------------------------------------------------------
 # PRIVACY
-# ---------------------------------------------------------
+
 
 st.markdown(
     """
 <div class="privacy">
 
-<strong>🔐 Privacy-aware matching</strong>
+<strong> Privacy-aware matching</strong>
 
 <br><br>
 
@@ -669,9 +692,8 @@ resume or job-description text.
 )
 
 
-# ---------------------------------------------------------
+
 # FOOTER
-# ---------------------------------------------------------
 
 st.markdown(
     """
